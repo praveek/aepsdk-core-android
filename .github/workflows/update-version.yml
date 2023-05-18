@@ -77,8 +77,8 @@ jobs:
         if [-z "${{ github.event.inputs.signal-version }}" ]; then
           echo "[Identity-${{ github.event.inputs.signal-version }})]" >> COMMIT_MSG
         fi 
-        echo COMMIT_MSG
-        echo COMMIT_MSG >> GITHUB_ENV
+        echo $COMMIT_MSG
+        echo COMMIT_MSG=$COMMIT_MSG >> GITHUB_ENV
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
