@@ -65,17 +65,17 @@ jobs:
     - name: Generate Commit Message
       shell: bash
       run: |
-        COMMIT_MSG="Update versions - "
-        if [ ! "${{ github.event.inputs.core-version }}" ]; then        
+        COMMIT_MSG=""
+        if [ "${{ github.event.inputs.core-version }}" ]; then        
           echo "[Core-${{ github.event.inputs.core-version }})]" >> COMMIT_MSG
         fi
-        if [ ! "${{ github.event.inputs.identity-version }}" ]; then        
+        if [ "${{ github.event.inputs.identity-version }}" ]; then        
           echo "[Identity-${{ github.event.inputs.identity-version }})]" >> COMMIT_MSG
         fi 
-        if [ ! "${{ github.event.inputs.lifecycle-version }}" ]; then      
+        if [ "${{ github.event.inputs.lifecycle-version }}" ]; then      
           echo "[Lifecycle-${{ github.event.inputs.lifecycle-version }})]" >> COMMIT_MSG
         fi 
-        if [ ! "${{ github.event.inputs.signal-version }}" ]; then        
+        if [ "${{ github.event.inputs.signal-version }}" ]; then        
           echo "[Identity-${{ github.event.inputs.signal-version }})]" >> COMMIT_MSG
         fi 
         echo $COMMIT_MSG
