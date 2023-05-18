@@ -66,16 +66,16 @@ jobs:
       shell: bash
       run: |
         COMMIT_MSG="Update versions - "
-        if [-z "${{ github.event.inputs.core-version }}" ]; then
+        if [ ! "${{ github.event.inputs.core-version }}" ]; then        
           echo "[Core-${{ github.event.inputs.core-version }})]" >> COMMIT_MSG
         fi
-        if [-z "${{ github.event.inputs.identity-version }}" ]; then
+        if [ ! "${{ github.event.inputs.identity-version }}" ]; then        
           echo "[Identity-${{ github.event.inputs.identity-version }})]" >> COMMIT_MSG
         fi 
-        if [-z "${{ github.event.inputs.lifecycle-version }}" ]; then
+        if [ ! "${{ github.event.inputs.lifecycle-version }}" ]; then      
           echo "[Lifecycle-${{ github.event.inputs.lifecycle-version }})]" >> COMMIT_MSG
         fi 
-        if [-z "${{ github.event.inputs.signal-version }}" ]; then
+        if [ ! "${{ github.event.inputs.signal-version }}" ]; then        
           echo "[Identity-${{ github.event.inputs.signal-version }})]" >> COMMIT_MSG
         fi 
         echo $COMMIT_MSG
@@ -84,7 +84,7 @@ jobs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
-        commit-message: Update version ${{ env.COMMIT_MSG }}
-        title: Update version ${{ env.COMMIT_MSG }}
-        body: Update version ${{ env.COMMIT_MSG }}        
+        commit-message: Update version - ${{ env.COMMIT_MSG }}
+        title: Update version - ${{ env.COMMIT_MSG }}
+        body: Update version - ${{ env.COMMIT_MSG }}        
         base: ${{ github.event.inputs.branch }}
