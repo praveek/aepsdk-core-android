@@ -66,17 +66,17 @@ jobs:
       shell: bash
       run: |
         COMMIT_MSG=""
-        if [ "${{ github.event.inputs.core-version }}" ]; then        
-          echo "[Core-${{ github.event.inputs.core-version }})]" >> COMMIT_MSG
+        if [ "${{ github.event.inputs.core-version }}" ]; then
+          COMMIT_MSG="[Core-${{ github.event.inputs.core-version }})]"
         fi
-        if [ "${{ github.event.inputs.identity-version }}" ]; then        
-          echo "[Identity-${{ github.event.inputs.identity-version }})]" >> COMMIT_MSG
+        if [ "${{ github.event.inputs.identity-version }}" ]; then
+          COMMIT_MSG="$COMMIT_MSG [Identity-${{ github.event.inputs.identity-version }})]"
         fi 
-        if [ "${{ github.event.inputs.lifecycle-version }}" ]; then      
-          echo "[Lifecycle-${{ github.event.inputs.lifecycle-version }})]" >> COMMIT_MSG
+        if [ "${{ github.event.inputs.lifecycle-version }}" ]; then
+          COMMIT_MSG="$COMMIT_MSG [Identity-${{ github.event.inputs.lifecycle-version }})]"
         fi 
-        if [ "${{ github.event.inputs.signal-version }}" ]; then        
-          echo "[Identity-${{ github.event.inputs.signal-version }})]" >> COMMIT_MSG
+        if [ "${{ github.event.inputs.signal-version }}" ]; then
+        COMMIT_MSG="$COMMIT_MSG [Identity-${{ github.event.inputs.signal-version }})]"
         fi 
         echo $COMMIT_MSG
         echo COMMIT_MSG=$COMMIT_MSG >> $GITHUB_ENV
