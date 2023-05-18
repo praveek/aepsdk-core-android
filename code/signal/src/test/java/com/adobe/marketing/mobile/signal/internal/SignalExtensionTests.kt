@@ -38,7 +38,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class SignalExtensionTests {
     private lateinit var signalExtension: Extension
     private lateinit var extensionApi: ExtensionApi
-    private var EXTENSION_VERSION = "2.0.1"
+    private var EXTENSION_VERSION = "3.1.5"
 
     companion object {
         @BeforeClass

@@ -25,7 +25,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class SignalAPITests {
 
-    private static final String EXTENSION_VERSION = "2.0.1";
+    private static final String EXTENSION_VERSION = "3.1.5";
 
     @Test
     public void test_extensionVersion() {
