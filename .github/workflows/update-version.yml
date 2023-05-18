@@ -63,6 +63,7 @@ jobs:
       run: (sh ./scripts/update-versions.sh -n Signal -v ${{ github.event.inputs.signal-version }})
 
     - name: Generate Commit Message
+      shell: bash
       run: |
         COMMIT_MSG="Update versions - "
         if [-z "${{ github.event.inputs.core-version }}" ]; then
@@ -78,7 +79,7 @@ jobs:
           echo "[Identity-${{ github.event.inputs.signal-version }})]" >> COMMIT_MSG
         fi 
         echo $COMMIT_MSG
-        echo COMMIT_MSG=$COMMIT_MSG >> GITHUB_ENV
+        echo COMMIT_MSG=$COMMIT_MSG >> $GITHUB_ENV
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
