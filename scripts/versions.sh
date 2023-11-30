@@ -11,7 +11,7 @@ VERSION_REGEX="[0-9]+\.[0-9]+\.[0-9]+"
 GRADLE_PROPERTIES_FILE=$ROOT_DIR"/code/gradle.properties"
 
 CORE_CONSTANTS_FILE=$ROOT_DIR"/code/core/src/main/java/com/adobe/marketing/mobile/internal/CoreConstants.kt"
-CORE_EXTENSION_VERSION_REGEX="/^ +const val VERSION *= *"
+CORE_EXTENSION_VERSION_REGEX="^ +const val VERSION *= *"
 
 LIFECYCLE_CONSTANTS_FILE=$ROOT_DIR"/code/lifecycle/src/phone/java/com/adobe/marketing/mobile/Lifecycle.java"
 LIFECYCLE_EXTENSION_VERSION_REGEX="^.*String EXTENSION_VERSION *= *"
