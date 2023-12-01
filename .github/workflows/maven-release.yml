@@ -37,14 +37,6 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
 
-      - name: Import GPG key
-        env:
-          GPG_SECRET_KEYS: ${{ secrets.GPG_SECRET_KEYS }}
-          GPG_OWNERTRUST: ${{ secrets.GPG_OWNERTRUST }}
-        run: |
-          echo $GPG_SECRET_KEYS | base64 --decode | gpg --import --no-tty --batch --yes
-          echo $GPG_OWNERTRUST | base64 --decode | gpg --import-ownertrust --no-tty --batch --yes
-
       - name: Verify versions        
         run: |
           set -eo pipefail
@@ -62,6 +54,14 @@ jobs:
           publish: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+
+      - name: Import GPG key
+        env:
+          GPG_SECRET_KEYS: ${{ secrets.GPG_SECRET_KEYS }}
+          GPG_OWNERTRUST: ${{ secrets.GPG_OWNERTRUST }}
+        run: |
+          echo $GPG_SECRET_KEYS | base64 --decode | gpg --import --no-tty --batch --yes
+          echo $GPG_OWNERTRUST | base64 --decode | gpg --import-ownertrust --no-tty --batch --yes
 
       - name: Publish to maven central repository
         run: make ${{  github.event.inputs.extension }}-publish-main
