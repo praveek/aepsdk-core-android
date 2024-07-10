@@ -7,11 +7,17 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        api-level: [21, 23, 29]
+        api-level: [21, 34]
         target: [default, google_apis]
     steps:
       - name: checkout
         uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 17
 
       - name: Enable KVM
         run: |
