@@ -47,7 +47,6 @@ apiValidation {
 
 dependencies {
     implementation(BuildConstants.Dependencies.ANDROIDX_LIFECYCLE_KTX)
-    implementation("androidx.lifecycle:lifecycle-process:2.8.7")
 
     androidTestImplementation(BuildConstants.Dependencies.MOCKITO_CORE)
     androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0")
