@@ -12,14 +12,11 @@
 package com.adobe.marketing.mobile
 
 import android.app.Application
-import com.adobe.marketing.mobile.internal.eventhub.EventHub
 import org.junit.After
-import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.mock
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
-import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.test.assertTrue
 
 class MobileCoreRegistrationTests {
@@ -108,15 +105,9 @@ class MobileCoreRegistrationTests {
         MockExtensionWithSlowInit.reset()
     }
 
-    @Before
-    fun setup() {
-        MobileCore.sdkInitializedWithContext = AtomicBoolean(false)
-        EventHub.shared = EventHub()
-    }
-
     @After
     fun cleanup() {
-        EventHub.shared.shutdown()
+        MobileCore.resetSDK()
         resetExtensions()
     }
 

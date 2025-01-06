@@ -26,7 +26,6 @@ import org.mockito.kotlin.verify
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
-import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.test.assertFalse
 
 @RunWith(RobolectricTestRunner::class)
@@ -34,7 +33,7 @@ class MobileCoreRobolectricTests {
 
     @Before
     fun setup() {
-        MobileCore.sdkInitializedWithContext = AtomicBoolean(false)
+        MobileCore.resetSDK()
     }
 
     @Test
@@ -50,7 +49,7 @@ class MobileCoreRobolectricTests {
             mockedStaticUserManagerCompat.verify({ UserManagerCompat.isUserUnlocked(Mockito.any()) }, never())
         }
         verify(mockedEventHub, never()).executeInEventHubExecutor(any())
-        assertTrue(MobileCore.sdkInitializedWithContext.get())
+        assertTrue(MobileCoreInitializer.setApplicationCalled.get())
     }
 
     @Test
@@ -66,7 +65,7 @@ class MobileCoreRobolectricTests {
             mockedStaticUserManagerCompat.verify({ UserManagerCompat.isUserUnlocked(Mockito.any()) }, times(1))
         }
         verify(mockedEventHub, times(1)).executeInEventHubExecutor(any())
-        assertTrue(MobileCore.sdkInitializedWithContext.get())
+        assertTrue(MobileCoreInitializer.setApplicationCalled.get())
     }
 
     @Test
@@ -81,6 +80,6 @@ class MobileCoreRobolectricTests {
             mockedStaticUserManagerCompat.verify({ UserManagerCompat.isUserUnlocked(Mockito.any()) }, times(1))
         }
         verify(mockedEventHub, never()).executeInEventHubExecutor(any())
-        assertFalse(MobileCore.sdkInitializedWithContext.get())
+        assertFalse(MobileCoreInitializer.setApplicationCalled.get())
     }
 }

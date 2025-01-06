@@ -33,7 +33,6 @@ import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
-import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -44,8 +43,8 @@ class MobileCoreTests {
 
     @Before
     fun setup() {
+        MobileCore.resetSDK()
         EventHub.shared = mockedEventHub
-        MobileCore.sdkInitializedWithContext = AtomicBoolean(false)
     }
 
     @After
